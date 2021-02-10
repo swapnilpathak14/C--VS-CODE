@@ -34,8 +34,5 @@ int main(){
             cout<<to_string(y)+z.erase(1,2)<<endl;
         }
     }
-
-    return 0;
-
-    
+    return 0; 
 }
