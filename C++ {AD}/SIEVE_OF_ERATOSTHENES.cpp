@@ -1,7 +1,8 @@
 #include<iostream>
 using namespace std;
+int const m=1000000;
 void primesieve(int n){
-    int prime[100]={0};
+    bool prime[m+1]={0};
     for(int i=2;i<=n;i++){
         if(prime[i]==0){
             for(int j=i*i;j<=n;j+=i){
@@ -16,6 +17,7 @@ void primesieve(int n){
     }cout<<endl;
 }
 int main(){
+
     int n;
     cin>>n;
     primesieve(n);
