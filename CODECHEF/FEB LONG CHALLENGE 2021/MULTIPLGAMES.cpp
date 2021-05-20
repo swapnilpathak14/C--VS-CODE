@@ -15,7 +15,7 @@ int main(){
             cin>>arr[x];
         }
         long long const int m=1e6;
-        int res[M+1]={};
+        int res=0;
         int s[m]={};
         map<pair<int,int>,int> s1;
         for(int y=0;y<Q;y++){
@@ -56,6 +56,7 @@ int main(){
         }
         for(int x=1;x<=m;x++){
             s[x]=s[x]+s[x-1];
+            res=max(res,s[x]);
         }
         cout<<res<<endl;
     }

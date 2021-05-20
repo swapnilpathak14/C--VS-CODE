@@ -5,7 +5,6 @@ class node{
     int data;
     node* next;
 
-    //CONSTRUCTOR
     node(int val){
         data=val;
         next=NULL;
@@ -14,48 +13,44 @@ class node{
 void insertattail(node* &head, int val){
     node* n=new node(val);
     if(head==NULL){
-        head=n;
-        return;
+       head=n;
+       return; 
     }
     node* temp=head;
     while(temp->next!=NULL){
         temp=temp->next;
-
     }
     temp->next=n;
 }
-void display(node *head)
-{
-    node *temp = head;
-    while (temp != NULL)
-    {
+void display(node* head){
+    node* temp=head;
+    while(temp!=NULL){
         cout << temp->data << "->";
         temp = temp->next;
     }
-    cout << "NULL" << endl;
+    cout<<"NULL"<<endl;
 }
-node* reversen(node* &head){ //head is by reference for further modifications
-    
-    node* prevptr=NULL;
-    node *currptr = head;
-    node* nextptr;
-    while(currptr!=NULL){
-        nextptr=currptr->next;
-        currptr->next=prevptr;
-
-        //Move forward
-        prevptr=currptr;
-        currptr=nextptr;
+node* reverse_recursive(node* &head){
+    //base case
+    if(head==NULL || head->next==NULL){
+        return head;
     }
-    return prevptr;
+    node* newhead=reverse_recursive(head->next); //this gave us the reverse of remaining linked list
+    head->next->next=head;
+    head->next=NULL;
+
+    return newhead;
 }
-int main(){
+
+int main()
+{
     node *head = NULL; //by value
     insertattail(head, 1);
     insertattail(head, 2);
     insertattail(head, 3);
+    insertattail(head, 4);
     display(head);
-    node* newhead=reversen(head);
+    node* newhead = reverse_recursive(head);
     display(newhead);
 
     return 0;

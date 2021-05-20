@@ -1,19 +1,45 @@
-#include<iostream>
-#include<string>
-#include<algorithm>
+#include<bits/stdc++.h>
 using namespace std;
 int main(){
-    int i,j,k;
-    cin>>i>>j>>k;
-    string y;
-    int p;
-    int movie=0;
-    for(int x=i;x<=j;x++){
-        y=to_string(x);
-        reverse(y.begin(),y.end());
-        p=stoi(y);
-        if((i-p)%k==0){
-            movie++;
+    long long int t;
+    cin>>t;
+    while(t--){
+        long long int n;
+        cin >> n;
+        int arr[n];
+        int ary[n];
+        for (int x = 0; x < n; x++)
+        {
+            cin >> arr[x];
+        }
+        for (int y = 0; y < n; y++)
+        {
+            cin >> ary[y];
+        }
+        int x = 0;
+        int y = 0;
+
+        for (x = 0; x < n; x++)
+        {
+            for (y = x; y < n; y++)
+            {
+                if (arr[x] == ary[y])
+                {
+                    int temp = arr[y];
+                    ary[y] = arr[x];
+                    arr[x] = temp;
+                    break;
+                }
+            }
+        }
+        if (y == n)
+        {
+            cout << "Impossible\n";
+        }
+        else
+        {
+            cout << "Possible\n";
         }
     }
-    cout<<movie<<endl;
+    return 0;
+}
